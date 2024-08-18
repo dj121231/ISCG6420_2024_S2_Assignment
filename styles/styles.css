@@ -27,6 +27,10 @@ header {
   grid-area: banner;
   background-color: #e1e1e1;
   padding: 20px;
+  position: relative;
+  height: 400px;
+  overflow: hidden;
+  cursor: pointer; /* 마우스를 올렸을 때 클릭 가능한 상태를 보여줌 */
 }
 
 #sidebar {
@@ -49,4 +53,214 @@ footer {
   position: fixed;
   width: 100%;
   bottom: 0;
+}
+
+/* Part 1: Banner Advertisement - Scene 1 */
+
+/* Container for the banner content */
+.banner-content {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+/* Background image styling with bounce animation */
+.background-image {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  animation: bounce 3s infinite; /* Background image bouncing animation */
+}
+
+/* Skip the Line with Fast Pass text overlay styling with heartbeat and color change animation */
+.fast-pass-text {
+  position: absolute;
+  top: 50%; /* Center vertically */
+  left: 50%; /* Center horizontally */
+  transform: translate(-50%, -50%); /* Align text in the center of the image */
+  font-size: 48px;
+  color: white;
+  animation: heartbeat 3s infinite, colorChange 3s infinite; /* Heartbeat and color change animation */
+}
+
+/* Background image bouncing animation */
+@keyframes bounce {
+  0%,
+  100% {
+    transform: translateX(-50%) translateY(0);
+  }
+  25% {
+    transform: translateX(-50%) translateY(-20px);
+  }
+  50% {
+    transform: translateX(-50%) translateY(20px);
+  }
+  75% {
+    transform: translateX(-50%) translateY(-20px);
+  }
+}
+
+/* Skip the Line with Fast Pass text heartbeat animation */
+@keyframes heartbeat {
+  0%,
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.2);
+  }
+}
+
+/* Text color change animation */
+@keyframes colorChange {
+  0%,
+  100% {
+    color: white;
+  }
+  50% {
+    color: #cccccc;
+  }
+}
+
+/* Part 1: Banner Advertisement - Scene 2 */
+
+/* Second scene container */
+.second-scene {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0; /* Initially hidden */
+  animation: showScene 2s 2s forwards; /* Scene transition after first scene */
+}
+
+/* Background image for the second scene with zoom-in effect */
+.background-image-second {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1); /* Initial size setting */
+  animation: zoomIn 3s forwards; /* Zoom-in effect for 3 seconds */
+  animation-delay: 3s; /* Animation starts after 3 seconds */
+}
+
+/* Focus image (woman on tube) */
+.focus-image {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0); /* Starts very small */
+  width: 150px;
+  height: auto;
+  opacity: 0; /* Initially hidden */
+  animation: growAndFocus 4s 2s forwards; /* Appears and grows after 2 seconds */
+}
+
+/* Scene text styling with border */
+.scene-text {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 36px;
+  color: white;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
+    1px 1px 0 #000; /* Creates border effect by applying shadow in 4 directions */
+  font-weight: bold;
+  opacity: 0;
+  text-align: center;
+  width: 100%;
+  animation: typing 2s 3s forwards; /* Typing effect */
+}
+
+/* Highlight for Fast Pass text with border */
+.fast-pass-highlight {
+  color: gold;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
+    1px 1px 0 #000; /* Creates border effect by applying shadow in 4 directions */
+  animation: highlight 1s 5s forwards; /* Highlight effect for Fast Pass */
+  display: inline-block; /* Ensures the highlighted text is centered with the rest */
+}
+
+/* Name and student ID styling */
+.student-info {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  font-size: 14px;
+  color: white;
+  padding: 10px;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+  text-align: right;
+  opacity: 0; /* Initially hidden */
+  animation: fadeIn 3s forwards; /* Name and ID fade in */
+  animation-delay: 6s; /* Delays the appearance until after the second scene animation */
+}
+
+/* Second scene transition */
+@keyframes showScene {
+  to {
+    opacity: 1;
+  }
+}
+
+/* Zoom-in effect for background */
+@keyframes zoomIn {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(3); /* Background image zooms in to 3x */
+  }
+}
+
+/* Zoom and grow effect for focus image */
+@keyframes growAndFocus {
+  from {
+    transform: translate(-50%, -50%) scale(0); /* Starts very small */
+    opacity: 0; /* Transparent */
+  }
+  to {
+    transform: translate(-50%, -50%) scale(3); /* Grows to original size */
+    opacity: 1; /* Becomes visible */
+  }
+}
+
+/* Typing effect for text */
+@keyframes typing {
+  from {
+    width: 0;
+    opacity: 1;
+  }
+  to {
+    width: 100%;
+    opacity: 1;
+  }
+}
+
+/* Highlight effect for Fast Pass */
+@keyframes highlight {
+  from {
+    font-size: 36px;
+  }
+  to {
+    font-size: 48px;
+    color: gold;
+  }
+}
+
+/* Fade-in effect for name and student ID */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
