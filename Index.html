@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Parakai Springs</title>
+    <!-- Link to external CSS stylesheet -->
     <link rel="stylesheet" href="styles/styles.css" />
   </head>
   <body>
@@ -15,9 +16,9 @@
       <!-- Part 1: Banner Advertisement -->
       <section id="banner">
         <a href="https://www.parakaisprings.co.nz/" target="_blank">
-          <!-- URL link added -->
+          <!-- URL link for the banner advertisement -->
           <div class="banner-content">
-            <!-- First scene -->
+            <!-- First scene of the banner -->
             <img
               src="images/banner1.png"
               alt="Landscape"
@@ -29,7 +30,7 @@
             </h2>
           </div>
 
-          <!-- Second scene -->
+          <!-- Second scene of the banner -->
           <div class="second-scene">
             <img
               src="images/banner2-1.jpeg"
@@ -45,8 +46,8 @@
               Don't like waiting? Buy now.
               <span class="fast-pass-highlight">'Fast Pass'</span>
             </h2>
+            <!-- Display student name and ID -->
             <p class="student-info">Dongju Kim - 1572184</p>
-            <!-- Name and student ID added -->
           </div>
         </a>
         <!-- End of URL link -->
@@ -54,16 +55,16 @@
 
       <!-- Part 2: Sidebar Advertisement -->
       <aside id="sidebar">
-        <!-- Sidebar advertisement content goes here -->
+        <!-- Sidebar advertisement with multiple scenes -->
         <div class="sidebar-content">
-          <!-- Scene 1 -->
+          <!-- Scene 1 of the sidebar advertisement -->
           <div class="sidebar-scene scene1">
             <img src="images/sidebarAd1.jpg" alt="Scenic Train Journey" />
             <img src="images/hero-bird-mobile.png" class="logo" />
             <div class="logo-text">GREAT JOURNEYS<br />NEW ZEALAND</div>
             <h3>Experience Scenic Plus</h3>
           </div>
-          <!-- Scene 2 -->
+          <!-- Scene 2 of the sidebar advertisement -->
           <div class="sidebar-scene scene2">
             <img src="images/sidebarAd2.jpg" alt="Onboard Dining" />
             <img src="images/hero-bird-mobile.png" class="logo" />
@@ -72,8 +73,7 @@
               Experience a feast of scenery and regionally inspired dishes
             </h3>
           </div>
-          <!-- Scene 3 -->
-
+          <!-- Scene 3 of the sidebar advertisement -->
           <div class="sidebar-scene scene3">
             <img src="images/sidebarAd3.jpg" alt="Book Your Seat" />
             <div class="scene3-content">
@@ -81,6 +81,7 @@
               <div class="scene3-logo-text">
                 GREAT JOURNEYS<br />NEW ZEALAND
               </div>
+              <!-- Blue circle with a call to action -->
               <div class="blue-circle">
                 <img
                   src="images/hero-bird-desktop.png"
@@ -91,6 +92,7 @@
                   BOOK <br /><span class="bold-text">YOUR SEAT</span> <br />NOW
                 </div>
               </div>
+              <!-- Bottom text listing various trip options -->
               <div class="bottom-text">
                 <p>SCENIC DAY TRIPS</p>
                 <p>SHORT BREAK PACKAGES</p>
@@ -103,7 +105,7 @@
 
       <!-- Part 3: Ticket Booking System -->
       <main id="booking">
-        <!-- Progress Indicator -->
+        <!-- Progress Indicator showing current step -->
         <div id="progress">
           <div class="step" id="step1Indicator">Step 1</div>
           <div class="step" id="step2Indicator">Step 2</div>
@@ -111,7 +113,7 @@
           <div class="step" id="step4Indicator">Step 4</div>
         </div>
 
-        <!-- Step 1 -->
+        <!-- Step 1: Select Date and Number of Guests -->
         <form id="step1" class="booking-form">
           <fieldset>
             <legend>Step 1: Date of Attendance and Number of Guests</legend>
@@ -120,6 +122,7 @@
               <label for="date">Select Date:</label>
               <input type="text" id="date" name="date" required />
             </div>
+            <!-- Datepicker widget for selecting date -->
             <div id="datepicker"></div>
 
             <div class="form-group">
@@ -145,7 +148,7 @@
           </fieldset>
         </form>
 
-        <!-- Step 2 -->
+        <!-- Step 2: Enter Contact Information -->
         <form id="step2" class="booking-form" style="display: none">
           <fieldset>
             <legend>Step 2: Contact Information</legend>
@@ -169,13 +172,43 @@
           </fieldset>
         </form>
 
-        <!-- Step 3 -->
+        <!-- Step 3: Select Ticket Options -->
         <form id="step3" class="booking-form" style="display: none">
           <fieldset>
             <legend>Step 3: Select Ticket Options</legend>
-            <label for="color">Select Ticket Color:</label>
-            <input type="color" id="color" name="color" required />
 
+            <!-- Ticket color selection using radio buttons -->
+            <label>Select Ticket Color:</label>
+            <div class="options">
+              <label
+                ><input
+                  type="radio"
+                  name="ticketColor"
+                  value="Black"
+                  required
+                />
+                Black</label
+              >
+              <label
+                ><input
+                  type="radio"
+                  name="ticketColor"
+                  value="Yellow"
+                  required
+                />
+                Yellow</label
+              >
+              <label
+                ><input type="radio" name="ticketColor" value="Red" required />
+                Red</label
+              >
+              <label
+                ><input type="radio" name="ticketColor" value="Blue" required />
+                Blue</label
+              >
+            </div>
+
+            <!-- Optional locker selection -->
             <label>Options (it can be exchanged):</label>
             <div class="options">
               <label
@@ -202,16 +235,18 @@
           </fieldset>
         </form>
 
-        <!-- Step 4 -->
+        <!-- Step 4: Confirm and Submit -->
         <form id="step4" class="booking-form" style="display: none">
           <fieldset>
             <legend>Step 4: Confirm and Submit</legend>
             <label>
+              <!-- Terms and conditions text -->
               <textarea rows="5" cols="30" readonly>
 Terms and conditions text...</textarea
               >
             </label>
 
+            <!-- Checkbox for agreeing to terms and conditions -->
             <label>
               <input type="checkbox" id="terms" required /> I agree to the terms
               and conditions.
@@ -224,16 +259,17 @@ Terms and conditions text...</textarea
           </fieldset>
         </form>
 
-        <!-- Summary Section -->
+        <!-- Booking Summary Section -->
         <section id="summary" style="display: none">
           <h2>Booking Summary</h2>
+          <!-- Summary content will be populated here -->
           <div id="summaryContent"></div>
           <button id="editBooking">Edit Booking</button>
         </section>
       </main>
     </div>
 
-    <!-- Footer section providing copyright information and marking the end of the page -->
+    <!-- Footer section with additional resources and credits -->
     <footer>
       <p>&copy; 2024 Parakai Springs</p>
       <p>
@@ -271,12 +307,9 @@ Terms and conditions text...</textarea
           >Facebook</a
         >.
       </p>
-      <!--
-      https://www.greatjourneysnz.com/scenic-trains/northern-explorer-train/scenic-plus-experience/
+    </footer>
 
-      https://scontent.fwlg4-1.fna.fbcdn.net/v/t39.30808-6/393680385_18391396264032252_7050296757330632180_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=127cfc&_nc_ohc=w31uSA11hEYQ7kNvgHTqsj6&_nc_ht=scontent.fwlg4-1.fna&oh=00_AYCaAXsQQ4yAKG2n6sGOybnsKByt8cdUswaqlqghCL1jJA&oe=66C86AAB
-    --></footer>
-    <!-- Connect JavaScript  -->
+    <!-- Connecting JavaScript libraries and scripts -->
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
@@ -289,6 +322,7 @@ Terms and conditions text...</textarea
       href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"
     />
 
+    <!-- Main JavaScript file -->
     <script src="scripts/main.js"></script>
   </body>
 </html>
