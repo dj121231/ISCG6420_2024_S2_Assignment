@@ -23,7 +23,10 @@
               alt="Landscape"
               class="background-image"
             />
-            <h2 class="fast-pass-text">Skip the Line with Fast Pass</h2>
+            <h2 class="fast-pass-text">
+              Skip the Line with
+              <span class="fast-pass-highlight">'Fast Pass'</span>
+            </h2>
           </div>
 
           <!-- Second scene -->
@@ -40,7 +43,7 @@
             />
             <h2 class="scene-text">
               Don't like waiting? Buy now.
-              <span class="fast-pass-highlight">Fast Pass</span>
+              <span class="fast-pass-highlight">'Fast Pass'</span>
             </h2>
             <p class="student-info">Dongju Kim - 1572184</p>
             <!-- Name and student ID added -->
@@ -56,25 +59,177 @@
           <!-- Scene 1 -->
           <div class="sidebar-scene scene1">
             <img src="images/sidebarAd1.jpg" alt="Scenic Train Journey" />
+            <img src="images/hero-bird-mobile.png" class="logo" />
+            <div class="logo-text">GREAT JOURNEYS<br />NEW ZEALAND</div>
             <h3>Experience Scenic Plus</h3>
           </div>
           <!-- Scene 2 -->
           <div class="sidebar-scene scene2">
             <img src="images/sidebarAd2.jpg" alt="Onboard Dining" />
-            <h3>Onboard Dining Experience</h3>
+            <img src="images/hero-bird-mobile.png" class="logo" />
+            <div class="logo-text">GREAT JOURNEYS<br />NEW ZEALAND</div>
+            <h3>
+              Experience a feast of scenery and regionally inspired dishes
+            </h3>
           </div>
-
           <!-- Scene 3 -->
+
           <div class="sidebar-scene scene3">
             <img src="images/sidebarAd3.jpg" alt="Book Your Seat" />
-            <h3>Book Your Seat Now</h3>
+            <div class="scene3-content">
+              <img src="images/hero-bird-mobile.png" class="scene3-logo" />
+              <div class="scene3-logo-text">
+                GREAT JOURNEYS<br />NEW ZEALAND
+              </div>
+              <div class="blue-circle">
+                <img
+                  src="images/hero-bird-desktop.png"
+                  alt="Your Image"
+                  class="circle-image"
+                />
+                <div>
+                  BOOK <br /><span class="bold-text">YOUR SEAT</span> <br />NOW
+                </div>
+              </div>
+              <div class="bottom-text">
+                <p>SCENIC DAY TRIPS</p>
+                <p>SHORT BREAK PACKAGES</p>
+                <p>GUIDED TOURS</p>
+              </div>
+            </div>
           </div>
         </div>
       </aside>
 
       <!-- Part 3: Ticket Booking System -->
       <main id="booking">
-        <!-- Ticket booking system content goes here -->
+        <!-- Progress Indicator -->
+        <div id="progress">
+          <div class="step" id="step1Indicator">Step 1</div>
+          <div class="step" id="step2Indicator">Step 2</div>
+          <div class="step" id="step3Indicator">Step 3</div>
+          <div class="step" id="step4Indicator">Step 4</div>
+        </div>
+
+        <!-- Step 1 -->
+        <form id="step1" class="booking-form">
+          <fieldset>
+            <legend>Step 1: Date of Attendance and Number of Guests</legend>
+
+            <div class="form-group">
+              <label for="date">Select Date:</label>
+              <input type="text" id="date" name="date" required />
+            </div>
+            <div id="datepicker"></div>
+
+            <div class="form-group">
+              <label for="adults">Adults:</label>
+              <input type="number" id="adults" name="adults" min="1" required />
+            </div>
+
+            <div class="form-group">
+              <label for="children">Children:</label>
+              <input
+                type="number"
+                id="children"
+                name="children"
+                min="0"
+                required
+              />
+            </div>
+
+            <div class="form-buttons">
+              <button type="reset">Clear</button>
+              <button type="button" id="next1">Next</button>
+            </div>
+          </fieldset>
+        </form>
+
+        <!-- Step 2 -->
+        <form id="step2" class="booking-form" style="display: none">
+          <fieldset>
+            <legend>Step 2: Contact Information</legend>
+            <label for="firstName">First Name:</label>
+            <input type="text" id="firstName" name="firstName" required />
+
+            <label for="lastName">Last Name:</label>
+            <input type="text" id="lastName" name="lastName" required />
+
+            <label for="middleName">Middle Name:</label>
+            <input type="text" id="middleName" name="middleName" />
+
+            <label for="email">Email Address:</label>
+            <input type="email" id="email" name="email" required />
+
+            <div class="form-buttons">
+              <button type="reset">Clear</button>
+              <button type="button" id="prev2">Before</button>
+              <button type="button" id="next2">Next</button>
+            </div>
+          </fieldset>
+        </form>
+
+        <!-- Step 3 -->
+        <form id="step3" class="booking-form" style="display: none">
+          <fieldset>
+            <legend>Step 3: Select Ticket Options</legend>
+            <label for="color">Select Ticket Color:</label>
+            <input type="color" id="color" name="color" required />
+
+            <label>Options (it can be exchanged):</label>
+            <div class="options">
+              <label
+                ><input type="radio" id="lockerYes" name="locker" value="yes" />
+                Locker (+10 NZD)</label
+              >
+              <label
+                ><input
+                  type="radio"
+                  id="lockerNo"
+                  name="locker"
+                  value="no"
+                  checked
+                />
+                No Locker</label
+              >
+            </div>
+
+            <div class="form-buttons">
+              <button type="reset">Clear</button>
+              <button type="button" id="prev3">Before</button>
+              <button type="button" id="next3">Next</button>
+            </div>
+          </fieldset>
+        </form>
+
+        <!-- Step 4 -->
+        <form id="step4" class="booking-form" style="display: none">
+          <fieldset>
+            <legend>Step 4: Confirm and Submit</legend>
+            <label>
+              <textarea rows="5" cols="30" readonly>
+Terms and conditions text...</textarea
+              >
+            </label>
+
+            <label>
+              <input type="checkbox" id="terms" required /> I agree to the terms
+              and conditions.
+            </label>
+
+            <div class="form-buttons">
+              <button type="button" id="prev4">Before</button>
+              <button type="submit" id="submitBooking">Submit</button>
+            </div>
+          </fieldset>
+        </form>
+
+        <!-- Summary Section -->
+        <section id="summary" style="display: none">
+          <h2>Booking Summary</h2>
+          <div id="summaryContent"></div>
+          <button id="editBooking">Edit Booking</button>
+        </section>
       </main>
     </div>
 
@@ -86,6 +241,13 @@
         <a href="assets/storyboard.pdf" target="_blank">Download Storyboard</a>
       </p>
       <p>
+        View the storyboard for sidebar advertisement:
+        <a href="assets/SidebarAdvertisement.docx" target="_blank"
+          >Download Storyboard</a
+        >
+      </p>
+
+      <p>
         Photo credits:
         <a
           href="https://treatme.co.nz/nz/experience/auckland-parakai-springs-entry-pass-with-pools-and-waterslides-access/led:0062y00000Gfs5jAAB"
@@ -95,9 +257,38 @@
         <a href="https://www.parakaisprings.co.nz/" target="_blank"
           >Parakai Springs Official Website</a
         >
+        ,
+        <a
+          href="https://www.greatjourneysnz.com/scenic-trains/northern-explorer-train/scenic-plus-experience/"
+          target="_blank"
+          >Great Journeys NZ</a
+        >.
+        <br />
+        Dining photo from
+        <a
+          href="https://scontent.fwlg4-1.fna.fbcdn.net/v/t39.30808-6/393680385_18391396264032252_7050296757330632180_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=127cfc&_nc_ohc=w31uSA11hEYQ7kNvgHTqsj6&_nc_ht=scontent.fwlg4-1.fna&oh=00_AYCaAXsQQ4yAKG2n6sGOybnsKByt8cdUswaqlqghCL1jJA&oe=66C86AAB"
+          target="_blank"
+          >Facebook</a
+        >.
       </p>
-    </footer>
+      <!--
+      https://www.greatjourneysnz.com/scenic-trains/northern-explorer-train/scenic-plus-experience/
+
+      https://scontent.fwlg4-1.fna.fbcdn.net/v/t39.30808-6/393680385_18391396264032252_7050296757330632180_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=127cfc&_nc_ohc=w31uSA11hEYQ7kNvgHTqsj6&_nc_ht=scontent.fwlg4-1.fna&oh=00_AYCaAXsQQ4yAKG2n6sGOybnsKByt8cdUswaqlqghCL1jJA&oe=66C86AAB
+    --></footer>
     <!-- Connect JavaScript  -->
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- jQuery UI -->
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+
+    <!-- jQuery UI CSS -->
+    <link
+      rel="stylesheet"
+      href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"
+    />
+
     <script src="scripts/main.js"></script>
   </body>
 </html>

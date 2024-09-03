@@ -4,6 +4,7 @@ body {
   padding: 0;
   background-color: #f4f4f4;
   font-family: Arial, sans-serif;
+  min-width: 1300px;
 }
 
 header {
@@ -18,25 +19,37 @@ header {
   grid-template-areas:
     "banner banner"
     "booking sidebar";
-  grid-template-columns: 3fr 1fr; /* 배너와 사이드바의 비율을 2:1로 조정 */
-  grid-gap: 20px;
-  padding: 20px;
+  grid-template-columns: 1fr 500px; /* booking과 sidebar의 비율을 설정, sidebar는 고정 너비 */
+  grid-gap: 1px;
+  padding: 0px;
 }
 
 #banner {
   grid-area: banner;
   background-color: #e1e1e1;
-  padding: 20px;
+  padding: 1px;
   position: relative;
-  height: 150px; /* 배너의 높이를 줄여서 더 작게 만듦 */
+  height: 250px;
   overflow: hidden;
+  cursor: pointer;
+}
+
+#sidebar {
+  grid-area: sidebar;
+  background-color: #d1d1d1;
+  padding: 1px;
+  position: relative;
+  right: 0%;
+  height: 1000px; /* 사이드바의 고정 높이 설정 */
+  width: 500px;
   cursor: pointer;
 }
 
 #booking {
   grid-area: booking;
   background-color: #c1c1c1;
-  padding: 20px;
+  padding: 1px;
+  width: 100%;
 }
 
 footer {
@@ -45,8 +58,16 @@ footer {
   background-color: #333;
   color: white;
   width: 100%;
-  position: relative; /* 고정 위치에서 상대 위치로 변경 */
   bottom: 0;
+}
+
+footer a {
+  color: #ffd700; /* 예: 골드 색상으로 변경 */
+  text-decoration: none; /* 밑줄 제거 */
+}
+
+footer a:hover {
+  color: #ffa500; /* 마우스를 올렸을 때 오렌지 색상으로 변경 */
 }
 
 /* Part 1: Banner Advertisement - Scene 1 */
@@ -56,21 +77,22 @@ footer {
   position: relative;
   width: 100%;
   height: 100%;
+  animation: sceneVisibility 3s infinite;
 }
 
 /* Background image styling with bounce animation */
 .background-image {
   position: absolute;
-  top: 0;
+  top: -10%;
   left: 50%;
   transform: translateX(-50%);
   width: 100%;
-  height: 100%;
+  height: 150%;
   object-fit: cover;
-  animation: bounce 3s infinite; /* Background image bouncing animation */
+  animation: bounce 3s infinite;
 }
 
-/* Skip the Line with Fast Pass text overlay styling with heartbeat and color change animation */
+/* Skip the Line with Fast Pass text overlay styling with heartbeat animation */
 .fast-pass-text {
   position: absolute;
   top: 50%; /* Center vertically */
@@ -78,20 +100,29 @@ footer {
   transform: translate(-50%, -50%); /* Align text in the center of the image */
   font-size: 48px;
   color: white;
-  animation: heartbeat 3s infinite, colorChange 3s infinite; /* Heartbeat and color change animation */
+  animation: heartbeat 1.5s infinite; /* Heartbeat animation only */
+}
+
+/* Highlight for Fast Pass text with color change */
+.fast-pass-highlight {
+  color: white; /* 기본 색상 하얀색 */
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
+    1px 1px 0 #000; /* Creates border effect by applying shadow in 4 directions */
+  animation: highlightColorChange 1.5s infinite; /* 색상 전환 애니메이션 */
+  display: inline-block; /* Ensures the highlighted text is centered with the rest */
 }
 
 /* Background image bouncing animation */
 @keyframes bounce {
   0%,
   100% {
-    transform: translateX(-50%) translateY(0);
+    transform: translateX(-50%) translateY(0px);
   }
   25% {
     transform: translateX(-50%) translateY(-20px);
   }
   50% {
-    transform: translateX(-50%) translateY(20px);
+    transform: translateX(-50%) translateY(0px);
   }
   75% {
     transform: translateX(-50%) translateY(-20px);
@@ -120,6 +151,26 @@ footer {
   }
 }
 
+/* Highlight effect for Fast Pass */
+@keyframes highlightColorChange {
+  0%,
+  100% {
+    color: white; /* 기본 색상 하얀색 */
+  }
+  20% {
+    color: gold; /* ��상 변경 시 노��색 */
+  }
+  40% {
+    color: white; /* 색상 변경 시 노란색 */
+  }
+  60% {
+    color: gold; /* ��상 변경 시 노��색 */
+  }
+  80% {
+    color: white; /* ��상 변경 시 노��색 */
+  }
+}
+
 /* Part 1: Banner Advertisement - Scene 2 */
 
 /* Second scene container */
@@ -130,7 +181,7 @@ footer {
   width: 100%;
   height: 100%;
   opacity: 0; /* Initially hidden */
-  animation: showScene 2s 2s forwards; /* Scene transition after first scene */
+  animation: scene2Visibility 6s infinite; /* 6초 주기로 보였다가 사라지는 애니메이션 */
 }
 
 /* Background image for the second scene with zoom-in effect */
@@ -140,8 +191,8 @@ footer {
   height: 100%;
   object-fit: cover;
   transform: scale(1); /* Initial size setting */
-  animation: zoomIn 3s forwards; /* Zoom-in effect for 3 seconds */
-  animation-delay: 3s; /* Animation starts after 3 seconds */
+  animation: zoomIn 3s forwards infinite; /* Zoom-in effect for 3 seconds */
+  animation-delay: 3s; /* 두 번째 장면이 첫 번째 장면이 끝난 후에 시작 */
 }
 
 /* Focus image (woman on tube) */
@@ -153,7 +204,9 @@ footer {
   width: 150px;
   height: auto;
   opacity: 0; /* Initially hidden */
-  animation: growAndFocus 4s 2s forwards; /* Appears and grows after 2 seconds */
+  animation: growAndFocus 3s forwards infinite; /* Appears and grows after 2 
+  seconds */
+  animation-delay: 3s;
 }
 
 /* Scene text styling with border */
@@ -170,16 +223,8 @@ footer {
   opacity: 0;
   text-align: center;
   width: 100%;
-  animation: typing 2s 3s forwards; /* Typing effect */
-}
-
-/* Highlight for Fast Pass text with border */
-.fast-pass-highlight {
-  color: gold;
-  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
-    1px 1px 0 #000; /* Creates border effect by applying shadow in 4 directions */
-  animation: highlight 1s 5s forwards; /* Highlight effect for Fast Pass */
-  display: inline-block; /* Ensures the highlighted text is centered with the rest */
+  animation: typing 3s forwards infinite; /* Typing effect을 첫 번째 장면이 끝난 후에 시작하도록 조정 */
+  animation-delay: 3s;
 }
 
 /* Name and student ID styling */
@@ -187,20 +232,25 @@ footer {
   position: absolute;
   bottom: 0;
   right: 0;
-  font-size: 14px;
+  font-size: 40px;
   color: white;
   padding: 10px;
   background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
   text-align: right;
   opacity: 0; /* Initially hidden */
-  animation: fadeIn 3s forwards; /* Name and ID fade in */
-  animation-delay: 6s; /* Delays the appearance until after the second scene animation */
+  animation: fadeIn 3s forwards infinite; /* Name and ID fade in */
+  animation-delay: 3s; /* Delays the appearance until after the second scene animation */
 }
 
 /* Second scene transition */
-@keyframes showScene {
-  to {
-    opacity: 1;
+@keyframes scene2Visibility {
+  0%,
+  50% {
+    opacity: 0; /* 처음 3초 동안 보이지 않음 */
+  }
+  50.1%,
+  100% {
+    opacity: 1; /* 다음 3초 동안 보이기 */
   }
 }
 
@@ -260,13 +310,6 @@ footer {
 }
 
 /* Sidebar advertisement styles */
-#sidebar {
-  grid-area: sidebar;
-  background-color: #d1d1d1;
-  padding: 20px;
-  position: relative;
-  height: 1200px; /* 사이드바의 고정 높이 설정 */
-}
 
 .sidebar-content {
   position: relative;
@@ -275,7 +318,7 @@ footer {
   overflow: hidden;
 }
 
-.sidebar-scene img {
+.sidebar-scene img:not(.logo, .scene3-logo) {
   width: 100%; /* 이미지가 사이드바의 가로 길이에 맞게 확대됨 */
   height: 100%; /* 이미지가 사이드바의 세로 길이에 맞게 확대됨 */
   object-fit: cover; /* 이미지가 사이드바의 크기에 맞게 잘림 없이 확대됨 */
@@ -294,4 +337,306 @@ footer {
 
 .sidebar-scene.active {
   opacity: 1; /* 활성화된 이미지가 보이게 설정 */
+}
+
+.scene1::after,
+.scene2::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 30%; /* 뷰포트 높이와 너비에 따라 자동으로 높이 조정 */
+  background: linear-gradient(
+    to right,
+    rgba(3, 166, 33, 0.8),
+    rgba(1, 86, 19, 0.9)
+  ); /* 초록색에서 파란색으로 그라데이션 */
+  clip-path: polygon(
+    0% 30%,
+    100% 0%,
+    100% 100%,
+    0% 100%
+  ); /* 뷰포트 높이에 따라 클립 경로 조정 */
+}
+
+.logo {
+  position: absolute; /* 절대 위치로 설정 */
+  top: 10px; /* 상단에서 10px 아래 */
+  left: 10px; /* 왼쪽에서 10px 오른쪽 */
+  width: 150px; /* 로고의 너비 설정 */
+  height: auto; /* 비율에 맞게 높이 자동 조정 */
+  z-index: 10; /* 다른 요소 위에 표시되도록 설정 */
+}
+
+.logo-text {
+  position: absolute; /* 절대 위치로 설정 */
+  top: 110px; /* 로고 아래에 위치하도록 설정 */
+  left: 30px; /* 로고와 동일한 왼쪽 위치 */
+  font-size: 12px; /* 텍스트 크기 설정 */
+  color: white; /* 텍스트 색상 설정 */
+  z-index: 10; /* 로고와 동일하게 설정 */
+  text-align: center; /* 텍스트를 중앙 정렬 */
+  line-height: 1.2; /* 줄 간격 설정 */
+}
+
+h3 {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.scene1 h3 {
+  position: absolute;
+  bottom: 4%; /* vh와 vw를 조합하여 위치 설정 */
+  left: 50%; /* 왼쪽 기준점을 50%로 설정 */
+  transform: translateX(
+    -50%
+  ); /* 왼쪽 기준점에서 50%만큼 이동하여 중앙에 정렬 */
+  font-size: 40px; /* 뷰포트 너비에 따라 글꼴 크기가 조정됨 */
+  color: white;
+  z-index: 10;
+  text-align: center; /* 텍스트를 중앙 정렬 */
+  width: 100%; /* 부모 요소의 전체 너비를 사용 */
+}
+
+/* Specific styling for scene2 h3 */
+.scene2 h3 {
+  position: absolute;
+  bottom: 3.5%; /* vh와 vw를 조합하여 위치 설정 */
+  left: 50%; /* 왼쪽 기준점을 50%로 설정 */
+  transform: translateX(
+    -50%
+  ); /* 왼쪽 기준점에서 50%만큼 이동하여 중앙에 정렬 */
+  font-size: 33px; /* 뷰포트 너비에 따라 글꼴 크기가 조정됨 */
+  color: white;
+  z-index: 10;
+  text-align: center; /* 텍스트를 중앙 정렬 */
+  width: 100%; /* 부모 요소의 전체 너비를 사용 */
+}
+
+.scene3-logo {
+  position: absolute; /* 절대 위치로 설정 */
+  top: 3%; /* 상단에서 10% 아래에 위치 */
+  left: 46%; /* 가로 중앙에 위치 */
+  transform: translateX(-50%);
+  width: 350px; /* 로고의 너비 설정 */
+  height: auto; /* 비율에 맞게 높이 자동 조정 */
+  z-index: 10; /* 다른 요소 위에 표시되도록 설정 */
+}
+
+.scene3-logo-text {
+  position: absolute; /* 절대 위치로 설정 */
+  top: 25%; /* 로고 아래에 위치하도록 설정 */
+  left: 50%; /* 로고와 동일한 왼쪽 위치 */
+  transform: translateX(-50%);
+  font-size: 25px; /* 텍스트 크기 설정 */
+  color: white; /* 텍스트 색상 설정 */
+  z-index: 10; /* 로고와 동일하게 설정 */
+  text-align: center; /* 텍스트를 중앙 정렬 */
+  line-height: 1.2; /* 줄 간격 설정 */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+.blue-circle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 250px;
+  height: 250px;
+  background-color: rgb(57, 195, 214, 0.8); /* 파란색 배경 원 */
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.circle-image {
+  opacity: 0.3;
+  width: 80%; /* 크기를 조절, 필요에 따라 퍼센트나 픽셀 값으로 설정할 수 있습니다 */
+  height: auto; /* 비율에 맞게 높이를 자동 조정 */
+  border-radius: 50%; /* 원 모양으로 자르기 */
+  overflow: hidden; /* 원 밖으로 넘치는 부분을 잘라냄 */
+}
+
+.blue-circle div {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90%;
+  font-size: 30px;
+  color: white;
+  margin: 0;
+  text-align: center; /* 텍스트를 중앙에 정렬 */
+}
+
+.blue-circle .bold-text {
+  font-size: 38px;
+  font-weight: bold !important;
+}
+
+.bottom-text {
+  position: absolute;
+  bottom: 20px; /* 화면 하단에서 20px 위로 위치 */
+  left: 50%;
+  transform: translateX(-50%); /* 가로 중앙 정렬 */
+  width: 90%; /* 화면 너비의 90%를 차지 */
+  font-size: 25px; /* 텍스트 크기 조정 */
+  font-weight: bold;
+  color: white;
+  margin: 0;
+  text-align: center; /* 텍스트를 중앙에 정렬 */
+  display: flex;
+  justify-content: space-between; /* 텍스트들을 양쪽에 정렬 */
+}
+
+.bottom-text p {
+  flex: 1;
+  margin: 0;
+}
+
+.bottom-text p:not(:first-child) {
+  border-left: 1px solid white; /* 왼쪽에 세로 줄 추가 */
+}
+
+.bottom-text p:not(:last-child) {
+  border-right: 1px solid white; /* 오른쪽에 세로 줄 추가 */
+}
+
+.scene3::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 13%; /* 사각형 높이 설정 */
+  background: linear-gradient(
+    to right,
+    rgba(3, 86, 19, 0.5),
+    rgba(255, 255, 255, 0.5),
+    rgba(3, 86, 19, 0.5)
+  );
+}
+
+/* Progress Indicator Styles */
+#progress {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 20px;
+}
+
+.step {
+  width: 25%;
+  text-align: center;
+  padding: 10px;
+  background-color: #ccc;
+  border-radius: 5px;
+}
+
+.step.active {
+  background-color: #4caf50;
+  color: white;
+  font-weight: bold;
+}
+
+fieldset > * {
+  margin-bottom: 5%;
+}
+
+fieldset {
+  display: flex;
+  flex-direction: column; /* 요소들을 세로로 배치 */
+  align-items: center; /* 요소들을 가운데 정렬 */
+}
+
+legend {
+  text-align: center;
+  width: 100%; /* legend 요소의 너비를 부모 요소 전체로 설정 */
+  margin-bottom: 20px; /* 다른 요소와의 간격 설정 */
+}
+
+/* 레이블과 입력 필드를 가로로 배치 */
+label,
+input[type="text"],
+input[type="number"],
+input[type="email"] {
+  margin-bottom: 15px;
+  font-size: 30px; /* 레이블과 입력 필드의 글자 크기를 동일하게 설정 */
+}
+
+.booking-form {
+  font-size: 30px;
+}
+
+/* Adults와 Children 항목을 가로로 배치 */
+.form-group {
+  display: flex;
+  align-items: center;
+  width: 530px; /* 부모 요소의 너비에 맞춰 조정 */
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  text-align: left; /* 레이블을 오른쪽 정렬 */
+  width: 300px;
+  margin-right: 10px; /* 레이블과 인풋 간 간격 */
+}
+
+.form-group input {
+  width: 400px;
+  text-align: center; /* 입력 필드를 왼쪽 정렬 */
+  padding: 0px; /* 인풋 필드 내 패딩 추가로 더 깔끔한 레이아웃 */
+}
+
+.form-buttons button {
+  width: 200px; /* 버튼의 가로 길이 */
+  height: 60px; /* 버튼의 세로 길이 */
+  margin: 50px;
+  padding: 10px 20px; /* 버튼 안의 여백 (위아래 10px, 좌우 20px) */
+  font-size: 30px; /* 버튼 안의 텍스트 크기 */
+  border-radius: 5px; /* 버튼 모서리를 둥글게 */
+  background-color: #4caf50; /* 버튼 배경색 */
+  color: white; /* 버튼 텍스트 색상 */
+  border: none; /* 버튼 테두리 제거 */
+  cursor: pointer; /* 버튼 위에 마우스를 올렸을 때 커서 모양 변경 */
+}
+
+.form-buttons button:hover {
+  background-color: #45a049; /* 마우스를 올렸을 때의 배경색 */
+}
+
+/* Summary Section Styles */
+#summary {
+  padding: 20px;
+  background-color: #f9f9f9;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+#summary h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+#summaryContent p {
+  font-size: 18px;
+  margin: 10px 0;
+  color: #333;
+}
+
+#editBooking {
+  display: block;
+  margin: 20px auto;
+  padding: 10px 20px;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#editBooking:hover {
+  background-color: #45a049;
 }
